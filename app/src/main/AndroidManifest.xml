@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moim.NoActionBar">
         <activity
+            android:name=".MainMoim"
+            android:exported="true" />
+        <activity
             android:name=".RegisterActicity"
             android:exported="true" />
         <activity
