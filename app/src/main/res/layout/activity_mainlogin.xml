@@ -13,46 +13,42 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/colorPrimary"
+            android:layout_height="310dp"
+            android:background="@color/colorP"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:layout_width="275dp"
+                android:layout_height="209dp"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:text="Moim Moim!"
-                android:textColor="#ffffff"
-                android:textSize="25dp"
-                android:textStyle="bold" />
+                android:layout_margin="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/title" />
 
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/teal_700">
 
             <EditText
                 android:id="@+id/idText"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="100dp"
                 android:background="@color/colorP"
                 android:drawableStart="@drawable/ic_baseline_person_24"
                 android:drawableLeft="@drawable/ic_baseline_person_24"
                 android:hint="아이디"
                 android:padding="10dp"
                 android:textColor="#ffffff"
-                android:textColorHint="#ffffff" />
+                android:textColorHint="#ffffff"
+                android:layout_marginBottom="10dp"/>
 
             <EditText
                 android:id="@+id/passwordText"
@@ -67,7 +63,8 @@
                 android:inputType="textPassword"
                 android:padding="10dp"
                 android:textColor="#ffffff"
-                android:textColorHint="#ffffff" />
+                android:textColorHint="#ffffff"
+                android:layout_marginBottom="50dp" />
 
             <Button
                 android:id="@+id/btn_login"
@@ -79,15 +76,20 @@
                 android:text="로그인"
                 android:textColor="#ffffff"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
             <TextView
+                android:id="@+id/btn_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="18dp"
                 android:layout_marginTop="10dp"
-                android:text="회원가입"
-                android:id="@+id/btn_register"/>
+                android:text="회 원 가 입"
+                android:textSize="18dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#ffffff"
+                />
 
         </LinearLayout>
     </LinearLayout>

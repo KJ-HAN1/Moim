@@ -1,15 +1,20 @@
 package com.example.moim.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.moim.MainLogin;
+import com.example.moim.MainMoim;
 import com.example.moim.R;
 
 public class FragBoard extends Fragment{
@@ -25,6 +30,12 @@ public class FragBoard extends Fragment{
 
 
         return view;
+
     }
 
+
+
+
 }
+
+
