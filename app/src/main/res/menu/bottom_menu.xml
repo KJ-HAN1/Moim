@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/friend"
         android:icon="@drawable/ic_baseline_group_24"
         android:title="친구목록"
         android:enabled="true"
         />
 
     <item
-        android:id="@+id/star"
+        android:id="@+id/room"
         android:icon="@drawable/ic_baseline_location_on_24"
         android:title="MOIM"
         android:enabled="true"
         />
     <item
-        android:id="@+id/group"
+        android:id="@+id/board"
         android:icon="@drawable/ic_baseline_content_paste_24"
         android:title="게시판"
         android:enabled="true"
