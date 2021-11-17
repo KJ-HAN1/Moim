@@ -11,4 +11,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="login">#FA8072</color>
     <color name="nav">#ADFF2F</color>
+    <color name="loginback">#B9FFFF</color>
 </resources>
