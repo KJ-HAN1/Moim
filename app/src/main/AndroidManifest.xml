@@ -13,6 +13,9 @@
             android:name=".Del_friends"
             android:exported="true" />
         <activity
+            android:name=".RoomInActivity"
+            android:exported="true" />
+        <activity
             android:name=".FriendsAdd"
             android:exported="true" />
         <activity

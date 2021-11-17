@@ -12,6 +12,7 @@ import com.example.moim.Fragment.FragBoard;
 import com.example.moim.Fragment.FragFriend;
 import com.example.moim.Fragment.FragRoom;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.database.core.Tag;
 
 public class MainMoim extends AppCompatActivity {
@@ -40,7 +41,7 @@ public class MainMoim extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNav);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 //Log.i(TAG, "바텀 네비게이션 클릭");
