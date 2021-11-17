@@ -34,6 +34,7 @@
             </intent-filter>
 
         </activity>
+        // naver map api id
         <meta-data
         android:name="com.naver.maps.map.CLIENT_ID"
         android:value="cz560wyrlh" />
