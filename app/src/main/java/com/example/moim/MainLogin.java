@@ -2,14 +2,35 @@ package com.example.moim;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MainLogin extends AppCompatActivity {
 
+//    public Point getScreenSize(Activity activity) {
+//        Display display = activity.getWindowManager().getDefaultDisplay();
+//        Point size = new Point();
+//        display.getSize(size);
+//
+//        return  size;
+//    }
+//
+//    int standardSize_X, standardSize_Y;
+//    float density;
+//
+//    public void getStandardSize() {
+//        Point ScreenSize = getScreenSize(this);
+//        density  = getResources().getDisplayMetrics().density;
+//
+//        standardSize_X = (int) (ScreenSize.x / density);
+//        standardSize_Y = (int) (ScreenSize.y / density);
+//    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

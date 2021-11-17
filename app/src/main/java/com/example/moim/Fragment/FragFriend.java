@@ -29,7 +29,7 @@ public class FragFriend extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView");
-        View v  = inflater.inflate(R.layout.frag_friend, container, false);
+        View v  = inflater.inflate(R.layout.frag_friend, container, false); // 프래그먼트에서 id 찾기 위한 함수
 
         ImageView add = (ImageView) v.findViewById(R.id.addfr);
 
