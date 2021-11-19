@@ -60,22 +60,21 @@
             android:layout_weight="2">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btn_imoticon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_baseline_sentiment_emoticon"
-                />
+                app:srcCompat="@drawable/ic_baseline_sentiment_emoticon" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/btn_gps"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_baseline_map" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/btn_invite"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -84,3 +83,8 @@
     </LinearLayout>
 
 </RelativeLayout>
+
+
+
+
+

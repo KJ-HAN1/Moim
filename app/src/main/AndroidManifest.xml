@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.moim">
+    //gps 활성화체크/실시간 위치 받아오기
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -36,10 +40,11 @@
             </intent-filter>
 
         </activity>
-        // naver map api id
+        // naver map api_id
         <meta-data
         android:name="com.naver.maps.map.CLIENT_ID"
         android:value="cz560wyrlh" />
+
     </application>
 
 </manifest>
