@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.moim">
-    //gps 활성화체크/실시간 위치 받아오기
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 인터넷 권한 선언 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Moim.NoActionBar"
-        android:usesCleartextTraffic="true"> <!-- Android 9 버전부터 이 옵션 추가해야함. http 보안관련 때문에.. -->
+        android:usesCleartextTraffic="true"><!-- Android 9 버전부터 이 옵션 추가해야함. http 보안관련 때문에.. -->
 
         <activity
             android:name=".Del_friends"
@@ -38,13 +38,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        // naver map api_id
-        <meta-data
-        android:name="com.naver.maps.map.CLIENT_ID"
-        android:value="cz560wyrlh" />
 
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="cz560wyrlh" />
     </application>
 
 </manifest>

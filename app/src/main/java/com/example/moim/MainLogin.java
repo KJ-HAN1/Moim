@@ -2,60 +2,87 @@ package com.example.moim;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainLogin extends AppCompatActivity {
+import android.widget.EditText;
+import android.widget.Toast;
 
-//    public Point getScreenSize(Activity activity) {
-//        Display display = activity.getWindowManager().getDefaultDisplay();
-//        Point size = new Point();
-//        display.getSize(size);
-//
-//        return  size;
-//    }
-//
-//    int standardSize_X, standardSize_Y;
-//    float density;
-//
-//    public void getStandardSize() {
-//        Point ScreenSize = getScreenSize(this);
-//        density  = getResources().getDisplayMetrics().density;
-//
-//        standardSize_X = (int) (ScreenSize.x / density);
-//        standardSize_Y = (int) (ScreenSize.y / density);
-//    }
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+public class MainLogin extends AppCompatActivity {
+    private EditText idText, passwordText;
+    private Button btn_login;
+    private TextView btn_register;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainlogin);
 
-        //MainLogin layout의 registerButton을 눌렀을때 register액티비티로 화면 전환 (code 17~26)
-        TextView registerButton = (TextView) findViewById(R.id.btn_register);
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        idText = findViewById(R.id.idText);
+        passwordText = findViewById(R.id.passwordText);
+        btn_login = findViewById(R.id.btn_login);
+        btn_register = findViewById(R.id.btn_register);
 
+
+        // 회원가입 버튼을 클릭 시 수행
+        btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent registerIntent = new Intent(MainLogin.this, RegisterActicity.class);
-                MainLogin.this.startActivity(registerIntent);
+            public void onClick(View view) {
+                Intent intent = new Intent(MainLogin.this, RegisterActicity.class);
+                startActivity(intent);
             }
         });
-        //로그인 db 구현전 로그인버튼을 누르면 임시로 화면이동.
-        TextView loginButton = (TextView) findViewById(R.id.btn_login);
-        loginButton.setOnClickListener(new View.OnClickListener() {
 
+        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent registerIntent = new Intent(MainLogin.this, MainMoim.class);
-                MainLogin.this.startActivity(registerIntent);
+            public void onClick(View view) {
+                // EditText에 현재 입력되어있는 값을 get(가져온다)해온다.
+                String userID = idText.getText().toString();
+                String userPass = passwordText.getText().toString();
 
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
+                            System.out.println("hongchul" + response);
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
+                            if (success) { // 로그인에 성공한 경우
+                                String userID = jsonObject.getString("userID"); //검사구문
+                                String userPW = jsonObject.getString("userPW");
+
+                                Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MainLogin.this, MainMoim.class);
+                                intent.putExtra("userID", userID);
+                                intent.putExtra("userPW", userPW);
+                                startActivity(intent);
+                            } else { // 로그인에 실패한 경우
+                                Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                LoginRequest loginRequest = new LoginRequest(userID, userPass, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(MainLogin.this);
+                queue.add(loginRequest);
             }
         });
+
+
     }
 }
