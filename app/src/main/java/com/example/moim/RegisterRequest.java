@@ -11,7 +11,7 @@ import java.util.Map;
 public class RegisterRequest extends StringRequest {
 
     // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://192.168.0.16:8080/Register.php"; //10.0.2.2는 다른컴퓨터에도 똑같이 URL사용
+    final static private String URL = "http://127.0.0.1:8080/Register.php"; //10.0.2.2는 다른컴퓨터에도 똑같이 URL사용
     private Map<String, String> parameters;
 
 
@@ -23,7 +23,7 @@ public class RegisterRequest extends StringRequest {
         parameters.put("userNik", userNik);
         parameters.put("userID", userID);
         parameters.put("userPW", userPW);
-        parameters.put("userPhone", userPhone +"" );
+        parameters.put("userPhone", userPhone + "" );
         parameters.put("userEmail", userEmail);
         parameters.put("userGender", userGender);
         parameters.put("userMajor", userMajor);

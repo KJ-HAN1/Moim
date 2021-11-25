@@ -143,7 +143,7 @@ public class RegisterActicity extends AppCompatActivity {
                 String userID = IDText.getText().toString();
                 String userPW = PWText.getText().toString();
                 String userMajor = spinner.getSelectedItem().toString();
-                String userPhone = PhoneText.getText().toString();
+                int userPhone = Integer.parseInt(PhoneText.getText().toString());
                 String userEmail = emailText.getText().toString();
 
                 //ID 중복체크를 했는지 확인함
@@ -157,7 +157,7 @@ public class RegisterActicity extends AppCompatActivity {
                 }
 
                 //한칸이라도 빠뜨렸을 경우
-                if(userName.equals("")||userNik.equals("")||userID.equals("")||userPW.equals("")||userPhone.equals("")||userMajor.equals("")||userEmail.equals("")||userGender.equals("")){
+                if(userName.equals("")||userNik.equals("")||userID.equals("")||userPW.equals("")||userMajor.equals("")||userEmail.equals("")||userGender.equals("")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActicity.this);
                     dialog = builder.setMessage("Empty text exist")
                             .setNegativeButton("OK", null)
