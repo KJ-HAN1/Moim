@@ -30,7 +30,6 @@ public class FragRoom extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.i(TAG, "onCreateView");
 
         View v = inflater.inflate(R.layout.frag_room, container, false);
 
