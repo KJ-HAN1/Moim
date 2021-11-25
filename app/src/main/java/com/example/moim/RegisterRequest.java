@@ -15,7 +15,7 @@ public class RegisterRequest extends StringRequest {
     private Map<String, String> parameters;
 
 
-    public RegisterRequest(String userName, String userNik, String userID, String userPW, String userPhone, String userEmail ,String userGender ,String userMajor,Response.Listener<String> listener) {
+    public RegisterRequest(String userName, String userNik, String userID, String userPW, int userPhone, String userEmail ,String userGender ,String userMajor,Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         parameters = new HashMap<>();
@@ -23,7 +23,7 @@ public class RegisterRequest extends StringRequest {
         parameters.put("userNik", userNik);
         parameters.put("userID", userID);
         parameters.put("userPW", userPW);
-        parameters.put("userPhone", userPhone);
+        parameters.put("userPhone", userPhone +"" );
         parameters.put("userEmail", userEmail);
         parameters.put("userGender", userGender);
         parameters.put("userMajor", userMajor);
