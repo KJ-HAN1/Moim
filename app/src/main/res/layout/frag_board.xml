@@ -22,7 +22,7 @@
             android:textStyle="bold" />
 
         <ListView
-            android:id="@+id/BoardList"
+            android:id="@+id/BoardNotice"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3">
@@ -38,7 +38,7 @@
             android:textSize="30dp"
             android:textStyle="bold" />
         <ListView
-            android:id="@+id/BoardList2"
+            android:id="@+id/BoardContent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="7">
