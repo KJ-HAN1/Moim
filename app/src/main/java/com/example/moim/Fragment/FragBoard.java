@@ -20,7 +20,7 @@ import com.example.moim.MainMoim;
 import com.example.moim.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class FragBoard extends Fragment{
+public class FragBoard extends Fragment {
     private View view;
     private String TAG = "프래그먼트";
 
