@@ -59,6 +59,7 @@ public class FragBoard extends Fragment {
         FloatingActionButton edit = (FloatingActionButton) v.findViewById(R.id.fbtn_edit);
         edit.setOnClickListener(new View.OnClickListener() {
 
+
             @Override
             public void onClick(View v) {
                 Intent edit = new Intent(getActivity(), EditBoard.class);
@@ -73,6 +74,7 @@ public class FragBoard extends Fragment {
 
 
         return v;
+
 
     }
 
@@ -105,6 +107,7 @@ public class FragBoard extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
     private void getData(String url) {
@@ -140,7 +143,9 @@ public class FragBoard extends Fragment {
         GetDataJSON g = new GetDataJSON();
         g.execute(url);
 
+
     }
+
 
 }
 
