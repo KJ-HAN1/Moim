@@ -17,19 +17,21 @@
         <entry key="..\:/OssProject/Moim/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.21822916666666667" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3776041666666667" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2125" />
-        <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_del_friends.xml" value="0.1171875" />
-        <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_friends_add.xml" value="0.3619791666666667" />
+        <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_del_friends.xml" value="0.264" />
+        <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_edit_board.xml" value="0.12708333333333333" />
+        <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_friends_add.xml" value="0.3510791366906475" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_login_request.xml" value="0.12291666666666666" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_main_moim.xml" value="0.33" />
-        <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_mainlogin.xml" value="0.1" />
+        <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_mainlogin.xml" value="0.2" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_nav.xml" value="0.20208333333333334" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_register_acticity.xml" value="0.264" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_register_request.xml" value="0.12708333333333333" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/layout/activity_room_in.xml" value="0.1" />
+        <entry key="..\:/OssProject/Moim/app/src/main/res/layout/board_list_item.xml" value="0.12708333333333333" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/layout/ff.xml" value="0.3619791666666667" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/layout/frag_board.xml" value="0.33" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/layout/frag_friend.xml" value="0.33" />
-        <entry key="..\:/OssProject/Moim/app/src/main/res/layout/frag_room.xml" value="0.1" />
+        <entry key="..\:/OssProject/Moim/app/src/main/res/layout/frag_room.xml" value="0.264" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/layout/fragment_blank.xml" value="0.3619791666666667" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/layout/fragment_dashboard.xml" value="0.20208333333333334" />
         <entry key="..\:/OssProject/Moim/app/src/main/res/menu/bottom_menu.xml" value="0.3614583333333333" />

@@ -79,6 +79,19 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="10dp"/>
 
+            <Button
+                android:id="@+id/temporary"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/login"
+                android:text="임시버튼"
+                android:textColor="#ffffff"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
             <TextView
                 android:id="@+id/btn_register"
                 android:layout_width="wrap_content"
