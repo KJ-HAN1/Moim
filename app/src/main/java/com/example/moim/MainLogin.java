@@ -1,61 +1,184 @@
 package com.example.moim;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
+
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainLogin extends AppCompatActivity {
+import android.widget.EditText;
+import android.widget.Toast;
 
-//    public Point getScreenSize(Activity activity) {
-//        Display display = activity.getWindowManager().getDefaultDisplay();
-//        Point size = new Point();
-//        display.getSize(size);
-//
-//        return  size;
-//    }
-//
-//    int standardSize_X, standardSize_Y;
-//    float density;
-//
-//    public void getStandardSize() {
-//        Point ScreenSize = getScreenSize(this);
-//        density  = getResources().getDisplayMetrics().density;
-//
-//        standardSize_X = (int) (ScreenSize.x / density);
-//        standardSize_Y = (int) (ScreenSize.y / density);
-//    }
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+public class MainLogin extends AppCompatActivity {
+    private AlertDialog dialog;
+
+
+
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_mainlogin);
 
-        //MainLogin layout의 registerButton을 눌렀을때 register액티비티로 화면 전환 (code 17~26)
-        TextView registerButton = (TextView) findViewById(R.id.btn_register);
+
+
+        TextView registerButton = (TextView)findViewById(R.id.btn_register);
+
+
+
+        //버튼이 눌리면 RegisterActivity로 가게함
+
         registerButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
+
+            public void onClick(View view) {
+
                 Intent registerIntent = new Intent(MainLogin.this, RegisterActicity.class);
+
                 MainLogin.this.startActivity(registerIntent);
+
             }
+
         });
-        //로그인 db 구현전 로그인버튼을 누르면 임시로 화면이동.
-        TextView loginButton = (TextView) findViewById(R.id.btn_login);
+
+
+
+        final EditText editID = (EditText) findViewById(R.id.idText);
+
+        final EditText editPW = (EditText) findViewById(R.id.passwordText);
+
+        final Button loginButton = (Button)findViewById(R.id.btn_login);
+
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
-                Intent registerIntent = new Intent(MainLogin.this, MainMoim.class);
-                MainLogin.this.startActivity(registerIntent);
+
+            public void onClick(View view) {
+
+                String userID = editID.getText().toString();
+
+                String userPW = editPW.getText().toString();
+
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+
+                    @Override
+
+                    public void onResponse(String response) {
+
+                        try {
+
+                            JSONObject jsonResponse = new JSONObject(response);
+
+                            boolean success = jsonResponse.getBoolean("success");
+
+
+                            if (success) {
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainLogin.this);
+
+                                dialog = builder.setMessage("로그인에 성공했습니다")
+
+                                        .setPositiveButton("확인", null)
+
+                                        .create();
+
+                                dialog.show();
+
+                                Intent intent = new Intent(MainLogin.this, MainMoim.class);
+
+                                MainLogin.this.startActivity(intent);
+
+                                finish();
+
+                            } else {
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainLogin.this);
+
+                                dialog = builder.setMessage("계정을 다시 확인하세요")
+
+                                        .setNegativeButton("다시시도", null)
+
+                                        .create();
+
+                                dialog.show();
+
+                                Intent intent = new Intent(MainLogin.this, MainMoim.class);
+
+                                MainLogin.this.startActivity(intent);
+
+                                finish();
+
+                            }
+
+
+                        } catch (Exception e) {
+
+                            e.printStackTrace();
+
+                        }
+
+                    }
+
+                };
+
+
+
+                LoginRequest loginRequest = new LoginRequest(userID, userPW, responseListener);
+
+                RequestQueue queue = Volley.newRequestQueue(MainLogin.this);
+
+                queue.add(loginRequest);
+
+
 
             }
+
         });
+
+
+
     }
+
+
+
+    @Override
+
+    protected void onStop(){
+
+        super.onStop();
+
+        if(dialog != null){//다이얼로그가 켜져있을때 함부로 종료가 되지 않게함
+
+            dialog.dismiss();
+
+            dialog = null;
+
+        }
+
+    }
+
+
+
+
+
 }
