@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -24,13 +25,18 @@ import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
+import com.naver.maps.map.overlay.LocationOverlay;
+import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.util.FusedLocationSource;
 
 public class RoomInActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    int i=0;
+    int count=0;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
     private NaverMap naverMap;
+
     //private NaverMap.setLocationSource(LocationSource);
 
     @Override
@@ -73,9 +79,21 @@ public class RoomInActivity extends AppCompatActivity implements OnMapReadyCallb
 
         //imoticon 버튼클릭
         btn_imoti.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"!!!!imoticon 구현예정!!!!", Toast.LENGTH_SHORT).show();
+                i= i++;
+                count = i%3;
+//                if(count == 0){
+//                    locationOverlay.setIcon(OverlayImage.fromResource(R.drawable.ic_baseline_imot01));
+//                }
+//                else if (count ==2){
+//                    locationOverlay.setIcon(OverlayImage.fromResource(R.drawable.ic_baseline_imot02));
+//                }
+//                else{
+//                    locationOverlay.setIcon(OverlayImage.fromResource(R.drawable.ic_baseline_imot03));
+//                }
+               // Toast.makeText(getApplicationContext(),"!!!!imoticon 구현예정!!!!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -129,5 +147,19 @@ public class RoomInActivity extends AppCompatActivity implements OnMapReadyCallb
         naverMap.setLocationSource(locationSource);
         naverMap.getUiSettings().setLocationButtonEnabled(true);
         naverMap.setLocationTrackingMode(LocationTrackingMode.None);
+        //현위치 아이콘 커스텀을 위한 설정
+        LocationOverlay locationOverlay = naverMap.getLocationOverlay();
+        locationOverlay.setVisible(true);
+        if(count == 0){
+            locationOverlay.setIcon(OverlayImage.fromResource(R.drawable.ic_baseline_imot01));
+        }
+        else if (count ==1){
+            locationOverlay.setIcon(OverlayImage.fromResource(R.drawable.ic_baseline_imot02));
+        }
+        else{
+            locationOverlay.setIcon(OverlayImage.fromResource(R.drawable.ic_baseline_imot03));
+        }
+
+
     }
 }

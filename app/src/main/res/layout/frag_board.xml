@@ -19,7 +19,9 @@
             android:background="@drawable/memo"
             android:text="공 지 사 항"
             android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:backgroundTint="@color/login"/>
 
         <ListView
             android:id="@+id/BoardNotice"
@@ -36,7 +38,9 @@
             android:background="@drawable/memo"
             android:text="게 시 글"
             android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:backgroundTint="@color/nav"/>
         <ListView
             android:id="@+id/BoardContent"
             android:layout_width="match_parent"

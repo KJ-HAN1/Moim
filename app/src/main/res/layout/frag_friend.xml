@@ -10,45 +10,62 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </View>
-
-        <ImageButton
-            android:id="@+id/addfr"
-            android:layout_width="50sp"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/addfr2"
-            android:layout_gravity="right">
-
-        </ImageButton>
-
-
-
-        <ImageButton
-            android:id="@+id/del"
-            android:layout_width="50dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/del">
+            android:background="@color/white"
+            android:orientation="horizontal">
 
-        </ImageButton>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"></View>
 
+            <ImageButton
+                android:id="@+id/addfr"
+                android:layout_width="50sp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/addfr2">
+
+            </ImageButton>
+
+
+            <ImageButton
+                android:id="@+id/del"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/del">
+
+            </ImageButton>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="친 구 목 록"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:background="@color/nav"
+                android:textAlignment="center"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

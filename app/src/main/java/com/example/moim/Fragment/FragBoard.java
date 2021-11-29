@@ -39,8 +39,8 @@ import java.util.HashMap;
 public class FragBoard extends Fragment {
     private View view;
     private String TAG = "프래그먼트";
+    //서버에서 가져올 정보를 담을 변수들 선언
     String myJSON;
-
     private static final String TAG_RESULTS = "result";
     private static final String TAG_NAME = "name";
     private static final String TAG_CONTENT = "content";
@@ -110,13 +110,14 @@ public class FragBoard extends Fragment {
 
     }
 
-    private void getData(String url) {
+    private void getData(String string) {
         class GetDataJSON extends AsyncTask<String, Void, String> {
 
             protected String doInBackground(String... params) {
-                String uri = params[0];
 
+                String uri = params[0];
                 BufferedReader bufferedReader = null;
+
                 try {
                     URL url = new URL(uri);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -136,12 +137,14 @@ public class FragBoard extends Fragment {
 
             @Override
             protected void onPostExecute(String result) {
-                myJSON = result;
+                //myJSON = result;
+                myJSON = TAG_RESULTS;
                 showList();
             }
         }
         GetDataJSON g = new GetDataJSON();
-        g.execute(url);
+        g.execute("url");
+
 
 
     }
