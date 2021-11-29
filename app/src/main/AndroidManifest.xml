@@ -14,8 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Moim.NoActionBar"
-        android:usesCleartextTraffic="true"><!-- Android 9 버전부터 이 옵션 추가해야함. http 보안관련 때문에.. -->
-
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name=".Del_friends"
             android:exported="true" />

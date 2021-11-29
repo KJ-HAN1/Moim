@@ -1,7 +1,10 @@
 package com.example.moim;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,69 +23,162 @@ import org.json.JSONObject;
 
 
 public class MainLogin extends AppCompatActivity {
-    private EditText idText, passwordText;
-    private Button btn_login;
-    private TextView btn_register;
+    private AlertDialog dialog;
+
+
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_mainlogin);
 
-        idText = findViewById(R.id.idText);
-        passwordText = findViewById(R.id.passwordText);
-        btn_login = findViewById(R.id.btn_login);
-        btn_register = findViewById(R.id.btn_register);
 
 
-        // 회원가입 버튼을 클릭 시 수행
-        btn_register.setOnClickListener(new View.OnClickListener() {
+        TextView registerButton = (TextView)findViewById(R.id.btn_register);
+
+
+
+        //버튼이 눌리면 RegisterActivity로 가게함
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
+
             public void onClick(View view) {
-                Intent intent = new Intent(MainLogin.this, RegisterActicity.class);
-                startActivity(intent);
+
+                Intent registerIntent = new Intent(MainLogin.this, RegisterActicity.class);
+
+                MainLogin.this.startActivity(registerIntent);
+
             }
+
         });
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
+
+
+        final EditText editID = (EditText) findViewById(R.id.idText);
+
+        final EditText editPW = (EditText) findViewById(R.id.passwordText);
+
+        final Button loginButton = (Button)findViewById(R.id.btn_login);
+
+
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
+
             public void onClick(View view) {
-                // EditText에 현재 입력되어있는 값을 get(가져온다)해온다.
-                String userID = idText.getText().toString();
-                String userPass = passwordText.getText().toString();
+
+                String userID = editID.getText().toString();
+
+                String userPW = editPW.getText().toString();
+
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            // TODO : 인코딩 문제때문에 한글 DB인 경우 로그인 불가
-                            System.out.println("hongchul" + response);
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean success = jsonObject.getBoolean("success");
-                            if (success) { // 로그인에 성공한 경우
-                                String userID = jsonObject.getString("userID"); //검사구문
-                                String userPW = jsonObject.getString("userPW");
 
-                                Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
+
+                    @Override
+
+                    public void onResponse(String response) {
+
+                        try {
+
+                            JSONObject jsonResponse = new JSONObject(response);
+
+                            boolean success = jsonResponse.getBoolean("success");
+
+
+                            if (success) {
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainLogin.this);
+
+                                dialog = builder.setMessage("로그인에 성공했습니다")
+
+                                        .setPositiveButton("확인", null)
+
+                                        .create();
+
+                                dialog.show();
+
                                 Intent intent = new Intent(MainLogin.this, MainMoim.class);
-                                intent.putExtra("userID", userID);
-                                intent.putExtra("userPW", userPW);
-                                startActivity(intent);
-                            } else { // 로그인에 실패한 경우
-                                Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
-                                return;
+
+                                MainLogin.this.startActivity(intent);
+
+                                finish();
+
+                            } else {
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainLogin.this);
+
+                                dialog = builder.setMessage("계정을 다시 확인하세요")
+
+                                        .setNegativeButton("다시시도", null)
+
+                                        .create();
+
+                                dialog.show();
+
+                                Intent intent = new Intent(MainLogin.this, MainMoim.class);
+
+                                MainLogin.this.startActivity(intent);
+
+                                finish();
+
                             }
-                        } catch (JSONException e) {
+
+
+                        } catch (Exception e) {
+
                             e.printStackTrace();
+
                         }
+
                     }
+
                 };
-                LoginRequest loginRequest = new LoginRequest(userID, userPass, responseListener);
+
+
+
+                LoginRequest loginRequest = new LoginRequest(userID, userPW, responseListener);
+
                 RequestQueue queue = Volley.newRequestQueue(MainLogin.this);
+
                 queue.add(loginRequest);
+
+
+
             }
+
         });
+
 
 
     }
+
+
+
+    @Override
+
+    protected void onStop(){
+
+        super.onStop();
+
+        if(dialog != null){//다이얼로그가 켜져있을때 함부로 종료가 되지 않게함
+
+            dialog.dismiss();
+
+            dialog = null;
+
+        }
+
+    }
+
+
+
+
+
 }

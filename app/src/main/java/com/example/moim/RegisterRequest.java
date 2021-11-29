@@ -11,11 +11,11 @@ import java.util.Map;
 public class RegisterRequest extends StringRequest {
 
     // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://127.0.0.1:8080/Register.php"; //10.0.2.2는 다른컴퓨터에도 똑같이 URL사용
+    final static private String URL = "http://10.0.2.2:8080/Register.php"; //10.0.2.2는 다른컴퓨터에도 똑같이 URL사용
     private Map<String, String> parameters;
 
 
-    public RegisterRequest(String userName, String userNik, String userID, String userPW, int userPhone, String userEmail ,String userGender ,String userMajor,Response.Listener<String> listener) {
+    public RegisterRequest(String userName, String userNik, String userID, String userPW, String userPhone, String userEmail ,String userGender ,String userMajor,Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         parameters = new HashMap<>();

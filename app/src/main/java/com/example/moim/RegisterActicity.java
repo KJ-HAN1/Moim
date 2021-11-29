@@ -71,7 +71,7 @@ public class RegisterActicity extends AppCompatActivity {
         });
 
         //회원가입시 아이디가 사용가능한지 검증하는 부분
-        final Button validateButton = (Button)findViewById(R.id.validateButton);
+        /*final Button validateButton = (Button)findViewById(R.id.validateButton);
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +130,7 @@ public class RegisterActicity extends AppCompatActivity {
                 RequestQueue queue = Volley.newRequestQueue(RegisterActicity.this);
                 queue.add(validateRequest);
             }
-        });
+        });*/
 
 
         //회원 가입 버튼이 눌렸을때
@@ -143,11 +143,11 @@ public class RegisterActicity extends AppCompatActivity {
                 String userID = IDText.getText().toString();
                 String userPW = PWText.getText().toString();
                 String userMajor = spinner.getSelectedItem().toString();
-                int userPhone = Integer.parseInt(PhoneText.getText().toString());
+                String userPhone = PhoneText.getText().toString();
                 String userEmail = emailText.getText().toString();
 
                 //ID 중복체크를 했는지 확인함
-                if(!validate){
+               /* if(!validate){
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActicity.this);
                     dialog = builder.setMessage("First Check ID plz")
                             .setNegativeButton("OK", null)
@@ -165,6 +165,7 @@ public class RegisterActicity extends AppCompatActivity {
                     dialog.show();
                     return;
                 }
+                */
 
                 //회원가입 시작
                 Response.Listener<String> responseListener = new Response.Listener<String>(){
