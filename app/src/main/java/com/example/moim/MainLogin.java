@@ -54,7 +54,6 @@ public class MainLogin extends AppCompatActivity {
             public void onClick(View v) {
                 Intent registerIntent = new Intent(MainLogin.this, MainMoim.class);
                 MainLogin.this.startActivity(registerIntent);
-
             }
         });
     }

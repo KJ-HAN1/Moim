@@ -115,7 +115,7 @@ public class FragBoard extends Fragment {
 
             protected String doInBackground(String... params) {
 
-                String uri = params[0];
+                String uri = ("http://192.168.35.148/connect.php");
                 BufferedReader bufferedReader = null;
 
                 try {
@@ -127,7 +127,7 @@ public class FragBoard extends Fragment {
 
                     String json;
                     while ((json = bufferedReader.readLine()) != null) {
-                        sb.append(json + "\n");
+                        sb.append(json);
                     }
                     return sb.toString().trim();
                 } catch (Exception e) {
@@ -137,16 +137,12 @@ public class FragBoard extends Fragment {
 
             @Override
             protected void onPostExecute(String result) {
-                //myJSON = result;
-                myJSON = TAG_RESULTS;
+                myJSON = result;
                 showList();
             }
         }
         GetDataJSON g = new GetDataJSON();
         g.execute("url");
-
-
-
     }
 
 
