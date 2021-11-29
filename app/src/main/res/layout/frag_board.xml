@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="9"
         android:orientation="vertical">
 
         <TextView
@@ -19,12 +19,15 @@
             android:background="@drawable/memo"
             android:text="공 지 사 항"
             android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:backgroundTint="@color/login"/>
 
         <ListView
+            android:id="@+id/BoardNotice"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3" >
+            android:layout_weight="3">
 
         </ListView>
 
@@ -35,28 +38,26 @@
             android:background="@drawable/memo"
             android:text="게 시 글"
             android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:backgroundTint="@color/nav"/>
         <ListView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="7">
+            android:id="@+id/BoardContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7">
         </ListView>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fbtn_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:clickable="true"
-            app:srcCompat="@drawable/ic_baseline_create_24"
-            android:backgroundTint="@color/nav"/>
-    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbtn_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:backgroundTint="@color/nav"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_baseline_create_24" />
 
 </LinearLayout>
