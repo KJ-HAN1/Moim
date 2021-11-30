@@ -1,134 +1,269 @@
 package com.example.moim;
 
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import android.widget.EditText;
-import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class MainLogin extends AppCompatActivity {
-    private AlertDialog dialog;
+    private static String TAG = "phplogin";
+
+    private static final String TAG_JSON = "user";
+    private static final String TAG_NAME = "userName";
+    private static final String TAG_NIK = "userNik";
+    private static final String TAG_ID = "userID";
+    private static final String TAG_PW = "userPW";
+    private static final String TAG_PHONE = "userPhone";
+    private static final String TAG_EMAIL = "userEmail";
+
+
+    ArrayList<HashMap<String, String>> mArrayList;
+
+    private EditText mEditTextID, mEditTextPass;
+
+    Button btn_login;
+    TextView btn_register;
+
+    private String mJsonString;
+    private   AlertDialog dialog;
+
+    private TextView mTextViewResult;
+    Button btn_temp;
 
 
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainlogin);
 
-
-
-        TextView registerButton = (TextView)findViewById(R.id.btn_register);
-        //버튼이 눌리면 RegisterActivity로 가게함
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent registerIntent = new Intent(MainLogin.this, RegisterActicity.class);
-                MainLogin.this.startActivity(registerIntent);
-
-            }
-
-        });
-
-        Button button = (Button)findViewById(R.id.temporary);
-        //메인 화면 임시 버튼
-        button.setOnClickListener(new View.OnClickListener() {
+        //임시버튼
+        btn_temp = (Button) findViewById(R.id.temporary);
+        btn_temp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Tp = new Intent(MainLogin.this, MainMoim.class);
-                MainLogin.this.startActivity(Tp);
+                Intent intent = new Intent(MainLogin.this, MainMoim.class);
+                startActivity(intent);
             }
         });
-        /*
 
+/*
+        mEditTextID = (EditText) findViewById(R.id.idText);
+        mEditTextPass = (EditText) findViewById(R.id.passwordText);
 
-        final EditText editID = (EditText) findViewById(R.id.idText);
-        final EditText editPW = (EditText) findViewById(R.id.passwordText);
-        final Button loginButton = (Button)findViewById(R.id.btn_login);
+        mEditTextPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+// 회원가입 버튼 클릭시
+        btn_register = findViewById(R.id.btn_register);
+        btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userID = editID.getText().toString();
-                String userPW = editPW.getText().toString();
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(MainLogin.this);
-                                dialog = builder.setMessage("로그인에 성공했습니다")
-                                        .setPositiveButton("확인", null)
-                                        .create();
-                                dialog.show();
-                                Intent intent = new Intent(MainLogin.this, MainMoim.class);
-                                MainLogin.this.startActivity(intent);
-                                finish();
-
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(MainLogin.this);
-                                dialog = builder.setMessage("계정을 다시 확인하세요")
-                                        .setNegativeButton("다시시도", null)
-                                        .create();
-                                dialog.show();
-                                Intent intent = new Intent(MainLogin.this, MainMoim.class);
-                                MainLogin.this.startActivity(intent);
-                                finish();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-
-                };
-
-                LoginRequest loginRequest = new LoginRequest(userID, userPW, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(MainLogin.this);
-                queue.add(loginRequest);
-
+                Intent intent = new Intent(MainLogin.this, MainMoim.class);
+                startActivity(intent);
             }
-
         });
 
+
+//login 버튼 클릭 시
+        btn_login = findViewById(R.id.btn_login);
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                mArrayList.clear();
+
+
+                GetData task = new GetData();
+                task.execute( mEditTextID.getText().toString(), mEditTextPass.getText().toString());
+
+            }
+        });
+
+
+        mArrayList = new ArrayList<>();
+
     }
 
+    private class GetData extends AsyncTask<String, Void, String>{
+
+        ProgressDialog progressDialog;
+        String errorString = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(MainLogin.this,
+                    "Please Wait", null, true, true);
+        }
 
 
-    @Override
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
 
-    protected void onStop(){
+            progressDialog.dismiss();
+            Log.d(TAG, "response - " + result);
 
-        super.onStop();
-
-        if(dialog != null){//다이얼로그가 켜져있을때 함부로 종료가 되지 않게함
-
-            dialog.dismiss();
-
-            dialog = null;
 
         }
-*/
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String userID = (String)params[0];
+            String userPW = (String)params[1];
+
+            String serverURL = "http://10.0.2.2:8080/loginRequset/query.php";
+            String postParameters = "userID=" + userID + "&userPW=" + userPW ;
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(2000);
+                httpURLConnection.setConnectTimeout(2000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "InsertData: Error ", e);
+
+                return new String("Error: " + e.getMessage());
+            }
+
+        }
     }
 
+    private void showResult(){
+
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String userName = item.getString(TAG_NAME);
+                String userNik = item.getString(TAG_NIK);
+                String userID = item.getString(TAG_ID);
+                String userPW = item.getString(TAG_PW);
+                String userPhone = item.getString(TAG_PHONE);
+                String userEmail = item.getString(TAG_EMAIL);
+
+
+
+                HashMap<String,String> hashMap = new HashMap<>();
+
+                hashMap.put(TAG_NAME, userName);
+                hashMap.put(TAG_NIK, userNik);
+                hashMap.put(TAG_ID, userID);
+                hashMap.put(TAG_PW, userPW);
+                hashMap.put(TAG_PHONE, userPhone);
+                hashMap.put(TAG_EMAIL, userEmail);
+
+
+                mArrayList.add(hashMap);
+
+                Intent intent = new Intent(MainLogin.this, MainMoim.class);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainLogin.this);
+
+
+                dialog.show();
+
+
+                return;
+            }
+
+
+            ListAdapter adapter = new SimpleAdapter(
+                    MainLogin.this, mArrayList, R.layout.activity_mainlogin,
+                    new String[]{TAG_NAME,TAG_NIK,TAG_ID,TAG_PW,TAG_PHONE,TAG_EMAIL},
+                    new int[]{R.id.textName, R.id.textNik, R.id.textId,R.id.textPw,R.id.textphone,R.id.textEmail}
+            );
+
+
+        } catch (JSONException e) {
+
+            Log.d(TAG, "showResult : ", e);
+        }
+
+*/
+    }
 
 }
