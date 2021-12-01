@@ -93,7 +93,7 @@ public class RoomInActivity extends AppCompatActivity implements OnMapReadyCallb
 //                else{
 //                    locationOverlay.setIcon(OverlayImage.fromResource(R.drawable.ic_baseline_imot03));
 //                }
-               // Toast.makeText(getApplicationContext(),"!!!!imoticon 구현예정!!!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"!!!!imoticon 구현예정!!!!", Toast.LENGTH_SHORT).show();
             }
         });
 
