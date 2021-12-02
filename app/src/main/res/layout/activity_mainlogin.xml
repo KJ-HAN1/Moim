@@ -36,7 +36,7 @@
             android:background="@color/teal_700">
 
             <EditText
-                android:id="@+id/idText"
+                android:id="@+id/etid"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -51,7 +51,7 @@
                 android:layout_marginBottom="10dp"/>
 
             <EditText
-                android:id="@+id/passwordText"
+                android:id="@+id/etpw"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -76,6 +76,19 @@
                 android:text="로그인"
                 android:textColor="#ffffff"
                 android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/temporary"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/login"
+                android:text="임시버튼"
+                android:textColor="#ffffff"
+                android:textSize="15dp"
                 android:textStyle="bold"
                 android:layout_marginBottom="10dp"/>
 

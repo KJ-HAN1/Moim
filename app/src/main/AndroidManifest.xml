@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.moim">
+    package="com.example.moim"
+    android:targetSandboxVersion="2">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 인터넷 권한 선언 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:usesCleartextTraffic="true"
+
         android:allowBackup="true"
-        android:icon="@drawable/logo_01"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo_01"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Moim.NoActionBar">
-        <activity
-            android:name=".EditBoard"
-            android:exported="true" />
+        android:theme="@style/Theme.Moim.NoActionBar"
+        android:usesCleartextTraffic="true"
+        >
         <activity
             android:name=".Del_friends"
             android:exported="true" />
@@ -40,11 +40,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
+        </activity>
+        // naver map api_id
         <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="cz560wyrlh" />
+        android:name="com.naver.maps.map.CLIENT_ID"
+        android:value="cz560wyrlh" />
+
     </application>
 
 </manifest>

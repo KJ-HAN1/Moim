@@ -109,8 +109,11 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:hint="ID" />
+                    android:hint="ID"
+                    android:inputType="textPersonName" />
+
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -206,6 +209,8 @@
 
                 </View>
 
+
+
                 <Button
                     android:id="@+id/btn_Submit"
                     android:layout_width="wrap_content"
@@ -214,6 +219,11 @@
                     android:backgroundTint="@color/login"
                     android:text="Submit">
                 </Button>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/textView_main_result" />
 
 
 
