@@ -45,20 +45,20 @@ public class MainLogin extends AppCompatActivity {
         et_pw = findViewById(R.id.etpw);
 
         btn_login = (Button)findViewById(R.id.btn_login);
-        btn_login.setOnClickListener(new View.OnClickListener() {
+        btn_login.setOnClickListener(new View.OnClickListener() { //버튼 누르면
             @Override
             public void onClick(View view) {
 
-                String userID = et_id.getText().toString();
+                String userID = et_id.getText().toString(); //아이디 비밀번호 가져오기
                 String userPW = et_pw.getText().toString();
 
                 InsertData task = new InsertData();
-                task.execute("http://" + IP_ADDRESS + "/loginRequset/login.php", userID,userPW);
-                Log.d("qq",userID+userPW);
+                task.execute("http://" + IP_ADDRESS + "/loginRequset/login.php", userID,userPW); //excute를 통해 백그라운드 task를 실행
+                Log.d("qq",userID+userPW); // 로그를 디버깅
             }
         });
         btn_register = (TextView) findViewById(R.id.btn_register);
-        btn_register.setOnClickListener(new View.OnClickListener() {
+        btn_register.setOnClickListener(new View.OnClickListener() { // 회원가입 버튼
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainLogin.this, RegisterActicity.class);
@@ -66,7 +66,7 @@ public class MainLogin extends AppCompatActivity {
             }
         });
     }
-    class InsertData extends AsyncTask<String, Void, String> {
+    class InsertData extends AsyncTask<String, Void, String> { // 데이터 넣는 구문
         ProgressDialog progressDialog;
 
         @Override
@@ -74,16 +74,16 @@ public class MainLogin extends AppCompatActivity {
             super.onPreExecute();
 
             progressDialog = ProgressDialog.show(MainLogin.this,
-                    "Please Wait", null, true, true);
+                    "Please Wait", null, true, true); // 다이어로그 Please wait 띄움
         }
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             Log.d("qq","\n\n"+result);
             progressDialog.dismiss();
-            result2 = result.toString().charAt(0);
+            result2 = result.toString().charAt(0); //result 값 문자형
             Log.d("qq","\n\n"+result2);
-            if(result2=='1')
+            if(result2=='1') //php파일 result2값이 1이면 로그인 인텐트
             {
                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainLogin.this, MainMoim.class);
