@@ -123,24 +123,20 @@ public class RegisterActicity extends AppCompatActivity {
             String serverURL = (String)params[0];
             String postParameters = "userName=" + userName + "&userNik=" + userNik + "&userID=" + userID + "&userPW=" + userPW + "&userPhone=" + userPhone + "&userEmail=" + userEmail;
 
-
             try {
 
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
 
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.connect();
 
-
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 outputStream.write(postParameters.getBytes("UTF-8"));
                 outputStream.flush();
                 outputStream.close();
-
 
                 int responseStatusCode = httpURLConnection.getResponseCode();
                 Log.d(TAG, "POST response code - " + responseStatusCode);
@@ -153,7 +149,6 @@ public class RegisterActicity extends AppCompatActivity {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
-
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -163,18 +158,12 @@ public class RegisterActicity extends AppCompatActivity {
                 while((line = bufferedReader.readLine()) != null){
                     sb.append(line);
                 }
-
-
                 bufferedReader.close();
-
 
                 return sb.toString();
 
-
             } catch (Exception e) {
-
                 Log.d(TAG, "InsertData: Error ", e);
-
                 return new String("Error: " + e.getMessage());
             }
 
