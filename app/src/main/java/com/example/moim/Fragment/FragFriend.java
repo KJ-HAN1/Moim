@@ -22,7 +22,8 @@ import com.example.moim.R;
 public class FragFriend extends Fragment {
 
     private View view;
-
+    private TextView tv_id;
+    private String IDV;
     private String TAG = "프래그먼트";
 
     @Nullable
@@ -30,6 +31,17 @@ public class FragFriend extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView");
         View v  = inflater.inflate(R.layout.frag_friend, container, false); // 프래그먼트에서 id 찾기 위한 함수
+
+        tv_id = (TextView) v.findViewById(R.id.tv_id);
+
+
+
+        /* Bundle extra = getArguments();
+            if(extra != null){
+                IDV = extra.getString("userID");
+            }
+            tv_id.setText(IDV);*/
+
 
         ImageView add = (ImageView) v.findViewById(R.id.addfr);
 
@@ -53,9 +65,6 @@ public class FragFriend extends Fragment {
 
 
         return v;
-
-
-
 
     }
 

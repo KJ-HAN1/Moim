@@ -42,6 +42,10 @@
         android:background="#eeeeee"
         android:hint="내용을 입력하세요."
         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/textv" />
 
     <Button
         android:id="@+id/btn_submitBoard"

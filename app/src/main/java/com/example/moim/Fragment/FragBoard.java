@@ -78,10 +78,10 @@ public class FragBoard extends Fragment {
         lv = (ListView) v.findViewById(R.id.BoardNotice);
         lv2 = (ListView) v.findViewById(R.id.BoardContent);
         boardList = new ArrayList<HashMap<String, String>>();
-        getData("http://192.168.35.148/connect.php");
+        getData("http://192.168.0.15/connect/connect.php");
         //게시판 리스트
         boardList2 = new ArrayList<HashMap<String, String>>();
-        getData2("http://192.168.35.148/connect2.php");
+        getData2("http://192.168.0.15/connect/connect2.php");
 
         return v;
 
@@ -125,7 +125,7 @@ public class FragBoard extends Fragment {
 
             protected String doInBackground(String... params) {
 
-                String uri = ("http://192.168.35.148/connect.php");
+                String uri = ("http://192.168.0.15/connect/connect.php");
                 BufferedReader bufferedReader = null;
 
                 try {
@@ -191,7 +191,7 @@ public class FragBoard extends Fragment {
 
             protected String doInBackground(String... params) {
 
-                String uri = ("http://192.168.35.148/connect2.php");
+                String uri = ("http://192.168.0.15/connect/connect2.php");
                 BufferedReader bufferedReader = null;
 
                 try {

@@ -17,6 +17,8 @@
         android:theme="@style/Theme.Moim.NoActionBar"
         android:usesCleartextTraffic="true"
         >
+        <activity android:name=".EditBoard"
+            android:exported="true"/>
         <activity
             android:name=".Del_friends"
             android:exported="true" />
